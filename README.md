@@ -2,7 +2,7 @@ Project submission from Youness El Assl
 email: elasslyouness@gmail.com
 
 ### Installation and Prerequisites
-* Python 3.6+
+* Python 3.8+
 * Install required python libraries<br> `pip install -r requirements.txt`
 ### Get started
 * Populate the database with:<br> `python3 db_import.py`
