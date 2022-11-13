@@ -32,4 +32,4 @@ with open('planning.json', 'r') as file:
         end_date = datetime.strptime(elem["endDate"], '%m/%d/%Y %I:%M %p')
         job = crud.create_job(db, schemas.JobCreate(**{"id": int(elem["id"]), "original_id": elem["originalId"], "booking_grade": elem["bookingGrade"], "operating_unit": elem["operatingUnit"], "office_city": elem["officeCity"], "office_postal_code": elem["officePostalCode"], "total_hours": float(
             elem["totalHours"]), "start_date": start_date, "end_date": end_date, "talent_id": talent.id, "manager_id": manager.id, "client_id": client.id, "required_skills": required_skills, "optional_skills": optional_skills}))
-        print(job.id)
+        print("Importing record number:",job.id)
