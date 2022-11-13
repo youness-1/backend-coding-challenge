@@ -6,7 +6,7 @@ email: elasslyouness@gmail.com
 * Install required python libraries<br> `pip install -r requirements.txt`
 ### Get started
 * Populate the database with:<br> `python3 db_import.py`
-* Start the server uvicorn<br> `challenge_api.main:app`
+* Start the server uvicorn<br> `uvicorn challenge_api.main:app`
 * It will default run on port 8000: http://127.0.0.1:8000
 * Test in: http://127.0.0.1:8000/docs
 
