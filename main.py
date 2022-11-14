@@ -34,11 +34,10 @@ def read_jobs(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
 
 
 @app.get("/jobs/filtering", response_model=List[schemas.Job])
-def read_job(id: int = None, original_id: str = None, operating_unit: str = None, client_id: str = None, office_city: str = None, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+def read_job(id: int = None, original_id: str = None, operating_unit: str = None, client_id: str = None, office_city: str = None, is_unassigned: bool = None, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     if skip < 0 or limit < 1:
         raise HTTPException(status_code=400, detail="Bad request")
-
-    filters = schemas.JobFilter(id=id, original_id=original_id, operating_unit=operating_unit, client_id=client_id, office_city=office_city)
+    filters = schemas.JobFilter(id=id, original_id=original_id, operating_unit=operating_unit, client_id=client_id, office_city=office_city, is_unassigned=is_unassigned)
     db_jobs = crud.get_filter_job(db, filters, skip=skip, limit=limit)
     if db_jobs is None:
         raise HTTPException(status_code=404, detail="Jobs not found")
