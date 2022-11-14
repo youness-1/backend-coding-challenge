@@ -84,7 +84,7 @@ class JobCreate(JobBase):
     manager_id: str
     client_id: str
     required_skills: list[str]
-    optional_skills: list[str] | None = None
+    optional_skills: list[str] 
     pass
 
 
@@ -94,7 +94,7 @@ class Job(JobBase):
     client: Client
     required_skills: list[Skill] = []
     optional_skills: list[Skill] = []
-    #is_unassigned: bool 
+    is_unassigned: bool 
     class Config:
         orm_mode = True
 
@@ -113,3 +113,4 @@ class JobFilter(BaseModel):
     operating_unit: str  | None = None
     client_id: str | None = None
     office_city: str | None = None
+    is_unassigned: bool | None = None

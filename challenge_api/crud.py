@@ -164,7 +164,7 @@ def get_filter_job(db, filters: schemas.JobFilter, skip: int = 0, limit: int = 1
     filters=vars(filters)
     jobs = db.query(models.Job)
     for filter in filters:
-        if filters[filter]:
+        if filters[filter] is not None:
             jobs=jobs.filter(getattr(models.Job, filter) == filters[filter])
     return jobs.offset(skip).limit(limit).all()
 

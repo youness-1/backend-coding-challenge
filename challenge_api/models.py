@@ -1,10 +1,15 @@
-from sqlalchemy import Column, ForeignKey, Integer, String, DateTime, Float, Table
+from sqlalchemy import Column, ForeignKey, Integer, String, DateTime, Float, Table, Boolean
 from sqlalchemy.orm import relationship, backref
 from .database import Base
 
 '''
 definition of SQLAlchemy models (classes and instances that interact with the database)
 '''
+def check_unassigned(context):
+    if context.get_current_parameters()["talent_id"]:
+        return False
+    else:
+        return True
 
 required_job_skill = Table(
     "required_job_skill",
@@ -42,7 +47,7 @@ class Job(Base):
     optional_skills = relationship(
         "Skill", secondary=optional_job_skill, back_populates="optional_in_jobs"
     )
-
+    is_unassigned = Column(Boolean, default=check_unassigned, onupdate=check_unassigned)
 
 class Talent(Base):
     __tablename__ = 'talent'
